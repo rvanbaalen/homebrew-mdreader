@@ -6,7 +6,7 @@ Homebrew tap for [mdreader](https://github.com/rvanbaalen/mdreader) — a beauti
 
 ```bash
 brew tap rvanbaalen/mdreader
-brew install --cask mdreader
+brew install mdreader
 ```
 
 ## About
