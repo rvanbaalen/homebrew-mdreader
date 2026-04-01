@@ -2,7 +2,7 @@ class Mdreader < Formula
   desc "A beautiful macOS markdown reader"
   homepage "https://github.com/rvanbaalen/mdreader"
   url "https://github.com/rvanbaalen/mdreader/releases/download/v1.0.3/mdreader-1.0.3-arm64-mac.zip"
-  sha256 "dbe076283f53666fc35003daad0b6cf8cdccb92f94ce60ff7fc20db235824f89"
+  sha256 "311750cc2b6441bcfe31237182c3dc5a0799cd89b54e825560f700a38b625a8d"
   license "MIT"
 
   def install
