@@ -77,7 +77,7 @@ class Mdreader < Formula
   end
 
   def post_install
-    system "ln", "-sf", "#{prefix}/mdreader.app", "/Applications/mdreader.app"
+    ohai "To add mdreader to Applications, run: ln -sf #{prefix}/mdreader.app /Applications/mdreader.app"
   end
 
   def caveats
