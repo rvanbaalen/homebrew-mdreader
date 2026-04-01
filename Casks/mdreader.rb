@@ -1,8 +1,8 @@
 cask "mdreader" do
-  version "0.1.0"
-  sha256 :no_check
+  version "1.0.3"
+  sha256 "dbe076283f53666fc35003daad0b6cf8cdccb92f94ce60ff7fc20db235824f89"
 
-  url "https://github.com/rvanbaalen/mdreader/releases/download/v#{version}/mdreader-#{version}-mac.zip"
+  url "https://github.com/rvanbaalen/mdreader/releases/download/v#{version}/mdreader-#{version}-arm64-mac.zip"
   name "mdreader"
   desc "A beautiful macOS markdown reader"
   homepage "https://github.com/rvanbaalen/mdreader"
