@@ -1,8 +1,8 @@
 class Mdreader < Formula
   desc "A beautiful macOS markdown reader"
   homepage "https://github.com/rvanbaalen/mdreader"
-  url "https://github.com/rvanbaalen/mdreader/archive/refs/tags/v1.2.0.tar.gz"
-  sha256 "2f7bfc35de45d31d1e6a73f3ce5536b3f1249986f5d3645ab470daef39465a53"
+  url "https://github.com/rvanbaalen/mdreader/archive/refs/tags/v1.2.1.tar.gz"
+  sha256 "3d18bc2ce4a771bca84eb68c8581c993231034f31b6b1093f5a0a0682c19a794"
   license "MIT"
 
   depends_on xcode: ["16.0", :build]
