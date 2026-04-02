@@ -12,22 +12,38 @@ class Mdreader < Formula
     system "bash", "build.sh"
     prefix.install "mdreader.app"
     bin.install_symlink prefix/"mdreader.app/Contents/MacOS/mdreader"
-  end
 
-  def post_install
-    # Register with LaunchServices so the OS knows about the app
+    # Register with LaunchServices
     system "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister", "#{prefix}/mdreader.app"
   end
 
-  def caveats
-    <<~EOS
-      To add mdreader to your Applications folder, run:
-        ln -sf #{prefix}/mdreader.app /Applications/mdreader.app
+  def post_install
+    app_source = "#{prefix}/mdreader.app"
+    app_target = "/Applications/mdreader.app"
 
-      Usage:
-        open -a mdreader README.md
-        mdreader README.md
-    EOS
+    # Try to install to /Applications
+    if File.writable?("/Applications")
+      FileUtils.rm_rf(app_target)
+      FileUtils.ln_sf(app_source, app_target)
+      ohai "mdreader.app installed to /Applications"
+    else
+      # Can't write to /Applications without sudo — show instructions
+      ohai "To install mdreader.app to Applications, run:"
+      puts "  sudo ln -sf #{app_source} #{app_target}"
+    end
+  end
+
+  def caveats
+    unless File.symlink?("/Applications/mdreader.app")
+      <<~EOS
+        To add mdreader to your Applications folder:
+          sudo ln -sf #{prefix}/mdreader.app /Applications/mdreader.app
+
+        Usage:
+          mdreader README.md
+          open -a mdreader README.md
+      EOS
+    end
   end
 
   test do
