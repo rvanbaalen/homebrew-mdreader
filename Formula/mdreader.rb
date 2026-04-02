@@ -9,36 +9,24 @@ class Mdreader < Formula
   depends_on :macos => :sonoma
 
   def install
-    # Use the project's build script which handles everything
     system "bash", "build.sh"
-
-    # Move the assembled .app into the Cellar prefix
     prefix.install "mdreader.app"
-
-    # Symlink the CLI binary
     bin.install_symlink prefix/"mdreader.app/Contents/MacOS/mdreader"
   end
 
   def post_install
-    # Link .app to ~/Applications (doesn't need sudo, unlike /Applications)
-    user_apps = File.expand_path("~/Applications")
-    FileUtils.mkdir_p(user_apps)
-    target = "#{user_apps}/mdreader.app"
-    FileUtils.rm_f(target)
-    FileUtils.ln_sf("#{prefix}/mdreader.app", target)
-    ohai "mdreader.app linked to ~/Applications"
-
-    # Register with LaunchServices
+    # Register with LaunchServices so the OS knows about the app
     system "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister", "#{prefix}/mdreader.app"
   end
 
   def caveats
     <<~EOS
-      mdreader.app has been installed to ~/Applications.
+      To add mdreader to your Applications folder, run:
+        ln -sf #{prefix}/mdreader.app /Applications/mdreader.app
 
-      Open a file:   open -a mdreader README.md
-      Open a folder: open -a mdreader ./docs
-      Or just:       mdreader README.md
+      Usage:
+        open -a mdreader README.md
+        mdreader README.md
     EOS
   end
 
