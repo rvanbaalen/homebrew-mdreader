@@ -5,7 +5,6 @@ class Mdreader < Formula
   sha256 "71856c1c95ad6162b3d275831b56a092b2dfc444f6a2d9d370f2b3515e53128d"
   license "MIT"
 
-  depends_on xcode: ["16.0", :build]
   depends_on :macos => :sonoma
 
   def install
